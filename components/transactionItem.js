@@ -13,5 +13,5 @@ const setTransactionItems = (list) => {
     });
     // Set items
     const listPanel = document.getElementById("transaction-list");
-    listPanel.innerHTML = itemList;
+    listPanel.innerHTML = itemList.join('');
 }

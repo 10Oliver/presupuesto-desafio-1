@@ -30,4 +30,9 @@ const loadButton = () => {
 const changeMode = (value) => {
     mode = value;
     loadButton();
+    if (mode) {
+        setTransactionItems(incomeTransactionList);
+    } else {
+        setTransactionItems(expensesTransactionList);
+    }
 }
