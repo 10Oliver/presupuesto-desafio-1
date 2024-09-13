@@ -23,7 +23,7 @@ const loadDashboard = (totalBalance, totalIncomes, totalExpenses) => {
     const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
 
     // Get percentage
-    const percentage = ((totalExpenses * 100) / totalBalance).toFixed(0);
+    const percentage = (totalExpenses * 100) / totalBalance;
     panel.innerHTML = `
         <h6 class="title-date">
             Presupuesto de ${capitalizedMonth} ${currentDate.getFullYear()}
@@ -46,7 +46,7 @@ const loadDashboard = (totalBalance, totalIncomes, totalExpenses) => {
         <div class="percentage-container">
             <span>Porcentaje de gastos:</span>
             <div class="percentage-chip">
-                <span>${percentage}%</span>
+                <span>${percentage ? percentage.toFixed(0) : '0'}%</span>
             </div>
         </div>
     `;;
