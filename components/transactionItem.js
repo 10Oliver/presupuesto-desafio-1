@@ -2,7 +2,7 @@ const drawItem = (name, value) => {
     return `
         <div class="transaction-item">
             <span>${name}</span>
-            <span>${value}</span>
+            ${costValue(value)}
         </div>
     `;
 }
@@ -14,4 +14,18 @@ const setTransactionItems = (list) => {
     // Set items
     const listPanel = document.getElementById("transaction-list");
     listPanel.innerHTML = itemList.join('');
+}
+
+const costValue = (value) => {
+    if (value < 0) {
+        return `
+            <div class="badget">
+                <span>${setSymbol(value)}</span>
+                <div>
+                    ${calculatePercentage(value).toFixed(2)}%
+                </div>
+            </div>
+        `;
+    }
+    return `<span>${setSymbol(value)}</span>`;
 }

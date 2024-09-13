@@ -29,8 +29,12 @@ const loadTransaction = () => {
 
 const submit = () => {
     // Check for type
-    const transactionType = document.getElementById("transaction-type-id").options[document.getElementById("transaction-type-id").selectedIndex].value;
-    const amount = document.getElementById("amount").value;
-    const description = document.getElementById("description").value;
-    registerNewTransaction(transactionType, amount, description);
+    const transactionType = document.getElementById("transaction-type-id").options[document.getElementById("transaction-type-id").selectedIndex];
+    const amount = document.getElementById("amount");
+    const description = document.getElementById("description");
+    registerNewTransaction(transactionType.value, amount.value, description.value);
+    // Clean
+    document.getElementById("transaction-type-id").selectedIndex = 0;
+    amount.value = "";
+    description.value = "";
 }

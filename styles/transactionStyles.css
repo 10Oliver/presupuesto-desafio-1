@@ -66,3 +66,19 @@ select.input-form {
     color: white;
     font-weight: 700;
 }
+
+.badget {
+    display: flex;
+    align-items: center;
+}
+
+.badget > div {
+    padding: 10px 12px;
+    margin-left: 10px;
+    background-color: #29323d;
+    color: white;
+    border-radius: 10px;
+    vertical-align: middle;
+    font-size: 10pt;
+    font-weight: 600;
+}

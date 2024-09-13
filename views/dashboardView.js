@@ -12,7 +12,7 @@ const setSymbol = (value) => {
     if (value < 0) {
         symbol = '-';
     }
-    return `${symbol} ${Math.abs(value)}`;
+    return `${symbol} ${Math.abs(value).toFixed(2)}`;
 }
 
 const loadDashboard = (totalBalance, totalIncomes, totalExpenses) => {
@@ -23,7 +23,7 @@ const loadDashboard = (totalBalance, totalIncomes, totalExpenses) => {
     const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
 
     // Get percentage
-    const percentage = (totalExpenses * 100) / totalBalance;
+    const percentage = calculatePercentage(totalExpenses);
     panel.innerHTML = `
         <h6 class="title-date">
             Presupuesto de ${capitalizedMonth} ${currentDate.getFullYear()}
