@@ -82,3 +82,7 @@ select.input-form {
     font-size: 10pt;
     font-weight: 600;
 }
+
+.alert {
+    color: #dd0707;
+}
