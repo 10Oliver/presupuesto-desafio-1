@@ -1,0 +1,39 @@
+#history-panel {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#tab-panel > button {
+    width: 50%;
+    background-color: inherit;
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    color: white;
+    font-size: 14pt;
+    font-weight: 600;
+}
+#tab-panel {
+    display: flex;
+    background-color: #d6d6d6;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.active {
+    background-color: #29323d !important;
+}
+
+.transaction-item {
+    padding: 20px 40px 20px 20px;
+    border: 2px solid #c9d3dd;
+    border-radius: 5px;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    color: #29323d;
+    font-size: 14pt;
+    font-weight: 600;
+}
