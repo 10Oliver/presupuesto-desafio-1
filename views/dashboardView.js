@@ -24,6 +24,7 @@ const loadDashboard = (totalBalance, totalIncomes, totalExpenses) => {
 
     // Get percentage
     const percentage = calculatePercentage(totalExpenses);
+    
     panel.innerHTML = `
         <h6 class="title-date">
             Presupuesto de ${capitalizedMonth} ${currentDate.getFullYear()}

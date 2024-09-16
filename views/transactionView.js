@@ -65,6 +65,8 @@ const showAlerts = () => {
 
     const number = Number(amount.value);
     
+    const currentTransactionOption = transaction.options[transaction.selectedIndex].value;
+    
     // Validations
     if (["", null].includes(document.getElementById("description").value)) {
         description.classList.add('error-input');
@@ -84,9 +86,15 @@ const showAlerts = () => {
         amountValid = false;
     }
 
-    if (transaction.options[transaction.selectedIndex].value == 0) {
+    if (currentTransactionOption == 0) {
         transaction.classList.add('error-input');
         transactionMessage.innerHTML = "El valor es requerido";
+        transactionValid = false;
+    }
+
+    if (currentTransactionOption == 2 && totalIncomes == 0) {
+        transaction.classList.add('error-input');
+        transactionMessage.innerHTML = "No puede registrar gastos sin ingresos";
         transactionValid = false;
     }
 
