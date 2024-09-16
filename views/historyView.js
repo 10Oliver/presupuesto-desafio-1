@@ -37,19 +37,38 @@ const loadButton = () => {
      */
     const incomeButton = document.createElement('button');
     incomeButton.textContent = 'Ingresos';
-    if (mode) {
+/*     if (mode) {
         incomeButton.classList.add('active');
-    }
+    } */
     incomeButton.addEventListener('click', () => changeMode(true));
 
     const expenseButton = document.createElement('button');
     expenseButton.textContent = 'Egresos';
-    if (!mode) {
+/*     if (!mode) {
         expenseButton.classList.add('active');
-    }
+    } */
     expenseButton.addEventListener('click', () => changeMode(false));
 
-    // Include buttons in panel
+
+    // Div animation
+    const animation = document.createElement('div');
+    animation.classList.add('slide');
+    if (mode) {
+        requestAnimationFrame(() => {
+            animation.classList.add('animation-slide-moved');
+            
+          });
+        setTimeout(() => {
+            animation.classList.toggle('inactive');
+        }, 100)
+    } else {
+        requestAnimationFrame(() => {
+            animation.classList.add('animation-slide');
+            animation.classList.toggle('active');
+          });
+    }
+    // Include buttons and animation in panel
+    buttonPanel.appendChild(animation);
     buttonPanel.appendChild(incomeButton);
     buttonPanel.appendChild(expenseButton);
 };

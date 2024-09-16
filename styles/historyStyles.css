@@ -7,23 +7,21 @@
 
 #tab-panel > button {
     width: 50%;
-    background-color: inherit;
+    background-color: transparent;
     border-radius: 10px;
     border: none;
     padding: 20px;
     color: white;
     font-size: 14pt;
     font-weight: 600;
+    z-index: 100;
 }
 #tab-panel {
     display: flex;
     background-color: #d6d6d6;
     border-radius: 10px;
     margin-bottom: 20px;
-}
-
-.active {
-    background-color: #29323d !important;
+    position: relative;
 }
 
 .transaction-item {
@@ -36,4 +34,30 @@
     color: #29323d;
     font-size: 14pt;
     font-weight: 600;
+}
+
+.slide {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    background-color: #29323d;
+    border-radius: 10px;
+}
+
+.animation-slide {
+    transform: translateX(0%);
+    transition: transform 1s ease;
+}
+
+.animation-slide-moved {
+    transform: translateX(100%);
+}
+
+.active {
+    transform: translateX(100%) !important;
+}
+
+.inactive {
+    transform: translateX(0%) !important;
+    transition: transform 1s ease;
 }
