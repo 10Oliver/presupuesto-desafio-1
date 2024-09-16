@@ -7,7 +7,10 @@
 }
 
 #dashboard {
-    background-color: azure;
+    background-image: url("../resources/wallpaper/general-wallpaper.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
