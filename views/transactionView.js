@@ -1,33 +1,105 @@
-const formHtml = `
-<div class="transaction-title">
-    <div class="icon">+</div>
-    <span>Transacción</span>
-</div>
-<div id="transaction-container">
-    <select id="transaction-type-id" class="input-form" placeholder="Ingreso | Egreso">
-        <option disabled selected value="0">Ingreso | Egreso</option>
-        <option value="1">Ingreso</option>
-        <option value="2">Egreso</option>
-    </select>
-    <span id="transaction-type-message" class="alert"></span>
-
-    <input type="text" class="input-form" id="description" placeholder="Descripción">
-    <span id="description-message" class="alert"></span>
-
-    <input type="number" class="input-form" id="amount" placeholder="Monto">
-    <span id="amount-message" class="alert"></span>
-
-    <button id="submit" onclick="submit()">Agregar</button>
-</div>
-`;
-
 /**
  * Methods
  */
+
 const loadTransaction = () => {
     const panel = document.getElementById("transaction-panel");
-    panel.innerHTML = formHtml;
-}
+
+    // Limpia el contenido actual del panel
+    panel.textContent = ''; 
+
+    // Crea el contenedor del título de la transacción
+    const transactionTitle = document.createElement('div');
+    transactionTitle.classList.add('transaction-title');
+
+    // Crea el icono "+"
+    const icon = document.createElement('div');
+    icon.classList.add('icon');
+    icon.textContent = '+';
+
+    // Crea el título "Transacción"
+    const title = document.createElement('span');
+    title.textContent = 'Transacción';
+
+    // Agrega el icono y el título al contenedor del título de la transacción
+    transactionTitle.appendChild(icon);
+    transactionTitle.appendChild(title);
+
+    // Crea el contenedor de la transacción
+    const transactionContainer = document.createElement('div');
+    transactionContainer.id = 'transaction-container';
+
+    // Crea el select para el tipo de transacción
+    const transactionTypeSelect = document.createElement('select');
+    transactionTypeSelect.id = 'transaction-type-id';
+    transactionTypeSelect.classList.add('input-form');
+    transactionTypeSelect.placeholder = 'Ingreso | Egreso';
+
+    const defaultOption = document.createElement('option');
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    defaultOption.value = '0';
+    defaultOption.textContent = 'Ingreso | Egreso';
+    const incomeOption = document.createElement('option');
+    incomeOption.value = '1';
+    incomeOption.textContent = 'Ingreso';
+    const expenseOption = document.createElement('option');
+    expenseOption.value = '2';
+    expenseOption.textContent = 'Egreso';
+
+    // Agrega las opciones al select
+    transactionTypeSelect.appendChild(defaultOption);
+    transactionTypeSelect.appendChild(incomeOption);
+    transactionTypeSelect.appendChild(expenseOption);
+
+    // Crea el mensaje de alerta para el tipo de transacción
+    const transactionTypeMessage = document.createElement('span');
+    transactionTypeMessage.id = 'transaction-type-message';
+    transactionTypeMessage.classList.add('alert');
+
+    // Crea el input para la descripción
+    const descriptionInput = document.createElement('input');
+    descriptionInput.type = 'text';
+    descriptionInput.classList.add('input-form');
+    descriptionInput.id = 'description';
+    descriptionInput.placeholder = 'Descripción';
+
+    // Crea el mensaje de alerta para la descripción
+    const descriptionMessage = document.createElement('span');
+    descriptionMessage.id = 'description-message';
+    descriptionMessage.classList.add('alert');
+
+    // Crea el input para el monto
+    const amountInput = document.createElement('input');
+    amountInput.type = 'number';
+    amountInput.classList.add('input-form');
+    amountInput.id = 'amount';
+    amountInput.placeholder = 'Monto';
+
+    // Crea el mensaje de alerta para el monto
+    const amountMessage = document.createElement('span');
+    amountMessage.id = 'amount-message';
+    amountMessage.classList.add('alert');
+
+    // Crea el botón de enviar
+    const submitButton = document.createElement('button');
+    submitButton.id = 'submit';
+    submitButton.textContent = 'Agregar';
+    submitButton.addEventListener('click', submit);
+
+    // Agrega todos los elementos al contenedor de la transacción
+    transactionContainer.appendChild(transactionTypeSelect);
+    transactionContainer.appendChild(transactionTypeMessage);
+    transactionContainer.appendChild(descriptionInput);
+    transactionContainer.appendChild(descriptionMessage);
+    transactionContainer.appendChild(amountInput);
+    transactionContainer.appendChild(amountMessage);
+    transactionContainer.appendChild(submitButton);
+
+    // Agrega el título de la transacción y el contenedor de la transacción al panel
+    panel.appendChild(transactionTitle);
+    panel.appendChild(transactionContainer);
+};
 
 
 /**
