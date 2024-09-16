@@ -1,30 +1,59 @@
+// Global value
 let mode = true;
-
-const historyHtml = `
-<div id="tab-panel">
-</div>
-<!-- Transactions -->
-<div id="transaction-list">
-
-</div>
-`;
 
 /**
  * Methods
  */
 const loadHistory = () => {
     const panel = document.getElementById("history-panel");
-    panel.innerHTML = historyHtml;
+
+    // Clean panel
+    panel.textContent = ''; 
+
+    // Container
+    const tabPanel = document.createElement('div');
+    tabPanel.id = 'tab-panel';
+
+    // Transaction list
+    const transactionList = document.createElement('div');
+    transactionList.id = 'transaction-list';
+
+    // Set values in panel
+    panel.appendChild(tabPanel);
+    panel.appendChild(transactionList);
+
     loadButton();
 }
 
+
 const loadButton = () => {
     const buttonPanel = document.getElementById("tab-panel");
-    buttonPanel.innerHTML = `
-        <button class="${mode ? 'active' : ''}" onclick="changeMode(true)">Ingresos</button>
-        <button class="${!mode ? 'active' : ''}" onclick="changeMode(false)">Egresos</button>
-    `
-}
+
+    // Clean panel
+    buttonPanel.textContent = ''; 
+
+    /**
+     * Buttons section
+     */
+    const incomeButton = document.createElement('button');
+    incomeButton.textContent = 'Ingresos';
+    if (mode) {
+        incomeButton.classList.add('active');
+    }
+    incomeButton.addEventListener('click', () => changeMode(true));
+
+    const expenseButton = document.createElement('button');
+    expenseButton.textContent = 'Egresos';
+    if (!mode) {
+        expenseButton.classList.add('active');
+    }
+    expenseButton.addEventListener('click', () => changeMode(false));
+
+    // Include buttons in panel
+    buttonPanel.appendChild(incomeButton);
+    buttonPanel.appendChild(expenseButton);
+};
+
 
 
 const changeMode = (value) => {
