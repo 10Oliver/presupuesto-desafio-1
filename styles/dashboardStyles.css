@@ -15,7 +15,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: 400px;
+    padding-top: 40px;
 }
 
 .total-balance {
@@ -76,13 +77,25 @@
 .warning-icon {
     width: 25px;
     height: 25px;
-    color: red;
+    color: #dd0707;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 3px solid red;
+    border: 3px solid #dd0707;
     border-radius: 100%;
     font-weight: 900;
     position: absolute;
     right: -40px;
+}
+
+.warning-icon:hover ~ .tooltip-chip {
+    opacity: 1 !important;
+}
+
+.tooltip-chip {
+    opacity: 0;
+    position: absolute;
+    right: -280px;
+    color: #dd0707;
+    transition: cubic-bezier(0.23, 1, 0.320, 1) 0.7s;
 }

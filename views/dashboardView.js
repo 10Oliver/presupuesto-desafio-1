@@ -92,10 +92,18 @@ const loadDashboard = () => {
 
     // Show alert
     if (Math.abs(totalExpenses) >= totalIncomes && totalIncomes !== 0) {
+        // Icon
         const warningIcon = document.createElement('div');
         warningIcon.classList.add('warning-icon');
         warningIcon.textContent = '!';
+
+        // Tooltip
+        const tooltipChip = document.createElement('span');
+        tooltipChip.classList.add('tooltip-chip')
+        tooltipChip.textContent = "Has superado los ingresos";
+
         percentageContainer.appendChild(warningIcon);
+        percentageContainer.appendChild(tooltipChip)
     }
 
     // Include all childs into panel
