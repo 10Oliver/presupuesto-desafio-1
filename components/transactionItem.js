@@ -22,7 +22,7 @@ const costValue = (value) => {
             <div class="badget">
                 <span>${setSymbol(value)}</span>
                 <div>
-                    ${calculatePercentage(value).toFixed(2)}%
+                    ${calculatePercentage(value).toFixed(0)}%
                 </div>
             </div>
         `;

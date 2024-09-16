@@ -65,6 +65,11 @@ select.input-form {
     background-color: #29323d;
     color: white;
     font-weight: 700;
+    border: none;
+}
+
+#submit:hover {
+    cursor: pointer;
 }
 
 .badget {
@@ -85,6 +90,10 @@ select.input-form {
 
 .alert {
     color: #dd0707;
+}
+
+.error-input {
+    border: 1px solid #dd0707;
 }
 
 #transaction-list {
