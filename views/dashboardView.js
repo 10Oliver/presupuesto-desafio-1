@@ -15,7 +15,7 @@ const setSymbol = (value) => {
     return `${symbol} ${Math.abs(value).toFixed(2)}`;
 }
 
-const loadDashboard = (totalBalance, totalIncomes, totalExpenses) => {
+const loadDashboard = () => {
     const panel = document.getElementById("dashboard");
     const currentDate = new Date();
     // Get month and year individually
@@ -24,7 +24,7 @@ const loadDashboard = (totalBalance, totalIncomes, totalExpenses) => {
 
     // Get percentage
     const percentage = calculatePercentage(totalExpenses);
-    
+
     panel.innerHTML = `
         <h6 class="title-date">
             Presupuesto de ${capitalizedMonth} ${currentDate.getFullYear()}
@@ -49,6 +49,7 @@ const loadDashboard = (totalBalance, totalIncomes, totalExpenses) => {
             <div class="percentage-chip">
                 <span>${percentage ? percentage.toFixed(0) : '0'}%</span>
             </div>
+            ${Math.abs(totalExpenses) >= totalIncomes && totalIncomes != 0 ? '<div class="warning-icon">!</div>' : ''}
         </div>
     `;;
 }

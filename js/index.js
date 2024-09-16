@@ -31,7 +31,7 @@ const registerNewTransaction = (transactionType, amount, description) => {
         });
     }
     // Refresh content
-    loadDashboard(totalBalance, totalIncomes, totalExpenses);
+    loadDashboard();
     changeMode(mode);
 }
 
