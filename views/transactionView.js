@@ -5,31 +5,31 @@
 const loadTransaction = () => {
     const panel = document.getElementById("transaction-panel");
 
-    // Limpia el contenido actual del panel
+    // Clean panel
     panel.textContent = ''; 
 
-    // Crea el contenedor del título de la transacción
+    // Title
     const transactionTitle = document.createElement('div');
     transactionTitle.classList.add('transaction-title');
 
-    // Crea el icono "+"
+    // Icon
     const icon = document.createElement('div');
     icon.classList.add('icon');
     icon.textContent = '+';
 
-    // Crea el título "Transacción"
+    // TItle
     const title = document.createElement('span');
     title.textContent = 'Transacción';
 
-    // Agrega el icono y el título al contenedor del título de la transacción
+    // Icon and title in panel
     transactionTitle.appendChild(icon);
     transactionTitle.appendChild(title);
 
-    // Crea el contenedor de la transacción
+    // Transaction container
     const transactionContainer = document.createElement('div');
     transactionContainer.id = 'transaction-container';
 
-    // Crea el select para el tipo de transacción
+    // Select and options
     const transactionTypeSelect = document.createElement('select');
     transactionTypeSelect.id = 'transaction-type-id';
     transactionTypeSelect.classList.add('input-form');
@@ -47,47 +47,46 @@ const loadTransaction = () => {
     expenseOption.value = '2';
     expenseOption.textContent = 'Egreso';
 
-    // Agrega las opciones al select
+    // Include options
     transactionTypeSelect.appendChild(defaultOption);
     transactionTypeSelect.appendChild(incomeOption);
     transactionTypeSelect.appendChild(expenseOption);
 
-    // Crea el mensaje de alerta para el tipo de transacción
+    // Validation message
     const transactionTypeMessage = document.createElement('span');
     transactionTypeMessage.id = 'transaction-type-message';
     transactionTypeMessage.classList.add('alert');
 
-    // Crea el input para la descripción
+    // Description input
     const descriptionInput = document.createElement('input');
     descriptionInput.type = 'text';
     descriptionInput.classList.add('input-form');
     descriptionInput.id = 'description';
     descriptionInput.placeholder = 'Descripción';
 
-    // Crea el mensaje de alerta para la descripción
+    // Description input warning message
     const descriptionMessage = document.createElement('span');
     descriptionMessage.id = 'description-message';
     descriptionMessage.classList.add('alert');
 
-    // Crea el input para el monto
+    // Amount input
     const amountInput = document.createElement('input');
     amountInput.type = 'number';
     amountInput.classList.add('input-form');
     amountInput.id = 'amount';
     amountInput.placeholder = 'Monto';
 
-    // Crea el mensaje de alerta para el monto
+    // Amount input alert
     const amountMessage = document.createElement('span');
     amountMessage.id = 'amount-message';
     amountMessage.classList.add('alert');
 
-    // Crea el botón de enviar
+    // Send button
     const submitButton = document.createElement('button');
     submitButton.id = 'submit';
     submitButton.textContent = 'Agregar';
     submitButton.addEventListener('click', submit);
 
-    // Agrega todos los elementos al contenedor de la transacción
     transactionContainer.appendChild(transactionTypeSelect);
     transactionContainer.appendChild(transactionTypeMessage);
     transactionContainer.appendChild(descriptionInput);
@@ -96,7 +95,6 @@ const loadTransaction = () => {
     transactionContainer.appendChild(amountMessage);
     transactionContainer.appendChild(submitButton);
 
-    // Agrega el título de la transacción y el contenedor de la transacción al panel
     panel.appendChild(transactionTitle);
     panel.appendChild(transactionContainer);
 };
@@ -126,65 +124,60 @@ const showAlerts = () => {
     let amountValid = true;
     let descriptionValid = true;
     let transactionValid = true;
-    // Messages
+
+    // Warnings
     const amountMessage = document.getElementById("amount-message");
     const descriptionMessage = document.getElementById("description-message");
     const transactionMessage = document.getElementById("transaction-type-message");
-    // Inputs
+
+    // Fields
     const amount = document.getElementById("amount");
     const description = document.getElementById("description");
     const transaction = document.getElementById("transaction-type-id");
 
     const number = Number(amount.value);
-    
     const currentTransactionOption = transaction.options[transaction.selectedIndex].value;
-    
+
     // Validations
-    if (["", null].includes(document.getElementById("description").value)) {
+    if (!description.value.trim()) {
         description.classList.add('error-input');
-        descriptionMessage.innerHTML = "El campo es requerido";
+        descriptionMessage.textContent = "El campo es requerido";
         descriptionValid = false;
     }
 
-    if (number < 0 || number === 0) {
+    if (number <= 0 || isNaN(number)) {
         amount.classList.add('error-input');
-        amountMessage.innerHTML = "El valor debe ser mayor a 0";
+        amountMessage.textContent = isNaN(number) ? "El valor ingresado no es un número" : "El valor debe ser mayor a 0";
         amountValid = false;
     }
 
-    if (isNaN(number)) {
-        amountMessage.innerHTML = "El valor ingresado no es un número";
-        amount.classList.add('error-input')
-        amountValid = false;
-    }
-
-    if (currentTransactionOption == 0) {
+    if (currentTransactionOption === "0") {
         transaction.classList.add('error-input');
-        transactionMessage.innerHTML = "El valor es requerido";
+        transactionMessage.textContent = "El valor es requerido";
         transactionValid = false;
     }
 
-    if (currentTransactionOption == 2 && totalIncomes == 0) {
+    if (currentTransactionOption === "2" && totalIncomes === 0) {
         transaction.classList.add('error-input');
-        transactionMessage.innerHTML = "No puede registrar gastos sin ingresos";
+        transactionMessage.textContent = "No puede registrar gastos sin ingresos";
         transactionValid = false;
     }
 
-    // Remove warnings
+    // Clean warnings
     if (amountValid) {
-        amountMessage.innerHTML = "";
+        amountMessage.textContent = "";
         amount.classList.remove('error-input');
     }
-    
+
     if (descriptionValid) {
         description.classList.remove('error-input');
-        descriptionMessage.innerHTML = "";
+        descriptionMessage.textContent = "";
     }
-    
+
     if (transactionValid) {
-        transactionMessage.innerHTML = "";
+        transactionMessage.textContent = "";
         transaction.classList.remove('error-input');
     }
 
     return descriptionValid && amountValid && transactionValid;
-}
+};

@@ -1,20 +1,33 @@
 const drawItem = (name, value) => {
-    return `
-        <div class="transaction-item">
-            <span>${name}</span>
-            ${costValue(value)}
-        </div>
-    `;
-}
+    // Container
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('transaction-item');
+
+    // Item name
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = name;
+    itemDiv.appendChild(nameSpan);
+
+    // Value
+    const valueSpan = document.createElement('div');
+    valueSpan.innerHTML = costValue(value);
+    itemDiv.appendChild(valueSpan);
+
+    return itemDiv;
+};
 
 const setTransactionItems = (list) => {
-    const itemList = list.map((item) => {
-        return drawItem(item.name, item.value);
-    });
-    // Set items
     const listPanel = document.getElementById("transaction-list");
-    listPanel.innerHTML = itemList.join('');
-}
+
+    // Clean container
+    listPanel.textContent = ''; 
+
+    // Include item
+    list.forEach((item) => {
+        const itemElement = drawItem(item.name, item.value);
+        listPanel.appendChild(itemElement);
+    });
+};
 
 const costValue = (value) => {
     if (value < 0) {
