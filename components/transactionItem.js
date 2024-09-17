@@ -9,9 +9,6 @@ const drawItem = (name, value) => {
     itemDiv.appendChild(nameSpan);
 
     // Value
-    //const valueSpan = document.createElement('div');
-    //valueSpan.innerHTML = costValue(value);
-    // Value
     const valueSpan = document.createElement('div');
     // Verify for badget with percentage
     if (value < 0) {
@@ -49,18 +46,4 @@ const setTransactionItems = (list) => {
         const itemElement = drawItem(item.name, item.value);
         listPanel.appendChild(itemElement);
     });
-};
-
-const costValue = (value) => {
-    if (value < 0) {
-        return `
-            <div class="badget">
-                <span>${setSymbol(value)}</span>
-                <div>
-                    ${calculatePercentage(value).toFixed(0)}%
-                </div>
-            </div>
-        `;
-    }
-    return `<span>${setSymbol(value)}</span>`;
 }
