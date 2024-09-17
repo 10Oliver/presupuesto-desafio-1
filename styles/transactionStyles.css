@@ -98,5 +98,5 @@ select.input-form {
 
 #transaction-list {
     overflow-y: auto;
-    max-height: 300px;
+    max-height: 280px;
 }
