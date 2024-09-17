@@ -9,7 +9,7 @@ const drawItem = (name, value) => {
     itemDiv.appendChild(nameSpan);
 
     // Value
-    const valueSpan = document.createElement('div');
+    const valueContainer = document.createElement('div');
     // Verify for badget with percentage
     if (value < 0) {
         const badget = document.createElement('div');
@@ -19,18 +19,18 @@ const drawItem = (name, value) => {
         valueSpan.textContent = setSymbol(value);
 
         const percentageBadget = document.createElement('div');
-        percentageBadget.textContent = calculatePercentage(value).toFixed(0);
+        percentageBadget.textContent = `${calculatePercentage(value).toFixed(0)}%`;
 
         // Set values
         badget.appendChild(valueSpan);
         badget.appendChild(percentageBadget);
-        valueSpan.appendChild(badget)
+        valueContainer.appendChild(badget)
     } else {
         const valueCost = document.createElement('span');
         valueCost.textContent = setSymbol(value);
-        valueSpan.appendChild(valueCost);
+        valueContainer.appendChild(valueCost);
     }
-    itemDiv.appendChild(valueSpan);
+    itemDiv.appendChild(valueContainer);
 
     return itemDiv;
 };
