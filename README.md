@@ -7,3 +7,7 @@ Calculadora de presupuesto, con la posibilidad de registrar las transacciones (G
 Muestra un historial de las transacciones dividiéndolas por ingresos o gastos.
 
 Está principalmente diseñada por componentes que se renderizan en la pestaña principal.
+
+**👥 Enlace del repositorio:**
+
+https://github.com/10Oliver/presupuesto-desafio-1
