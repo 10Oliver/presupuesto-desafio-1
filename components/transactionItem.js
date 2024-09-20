@@ -30,6 +30,19 @@ const drawItem = (name, value) => {
         valueCost.textContent = setSymbol(value);
         valueContainer.appendChild(valueCost);
     }
+
+    // Delete button
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete-button');
+
+    // Icons
+    const deleteIcon = document.createElement('span');
+    deleteIcon.classList.add('mdi');
+    deleteIcon.classList.add('mdi-delete');
+
+    deleteButton.appendChild(deleteIcon);
+
+    valueContainer.appendChild(deleteButton);
     itemDiv.appendChild(valueContainer);
 
     return itemDiv;
@@ -45,5 +58,8 @@ const setTransactionItems = (list) => {
     list.forEach((item) => {
         const itemElement = drawItem(item.name, item.value);
         listPanel.appendChild(itemElement);
+        requestAnimationFrame(() => {
+            itemElement.classList.add('transaction-item-active');
+        });
     });
 }
