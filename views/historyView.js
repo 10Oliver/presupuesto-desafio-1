@@ -91,9 +91,34 @@ const loadButton = () => {
 
 
 
-const changeMode = (value) => {
-    mode = value;
-    loadButton();
+const changeMode = (value, isTransaction) => {
+    /**
+     * When change mode button is pressed, is completly
+     * necessary render items
+     */
+    if (isTransaction == undefined) {
+        mode = value;
+        loadButton();
+        if (mode) {
+            setTransactionItems(incomeTransactionList);
+        } else {
+            setTransactionItems(expensesTransactionList);
+        }
+        return;
+    }
+
+    /**
+     * Transactions with different current mode
+     * will be not render
+     */
+
+    if (value !== isTransaction) {
+        return;
+    }
+
+    /**
+     * Transactions with same mode will be render
+     */
     if (mode) {
         setTransactionItems(incomeTransactionList);
     } else {

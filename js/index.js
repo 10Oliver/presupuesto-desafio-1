@@ -12,6 +12,8 @@ let totalExpenses = 0;
  */
 
 const registerNewTransaction = (transactionType, amount, description) => {
+    // Flag to determine if is necesary re-render items
+    let currentTypeRegister = true;
     // For incomes
     if (transactionType == 1) {
         totalBalance += Number(amount);
@@ -29,10 +31,12 @@ const registerNewTransaction = (transactionType, amount, description) => {
             name: description,
             value: 0 - amount
         });
+        
+        currentTypeRegister = false;
     }
     // Refresh content
     loadDashboard();
-    changeMode(mode);
+    changeMode(mode, currentTypeRegister);
 }
 
 
