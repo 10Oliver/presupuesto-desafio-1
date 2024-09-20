@@ -1,4 +1,4 @@
-const drawItem = (name, value) => {
+const drawItem = (name, value, index) => {
     // Container
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('transaction-item');
@@ -39,6 +39,7 @@ const drawItem = (name, value) => {
     const deleteIcon = document.createElement('span');
     deleteIcon.classList.add('mdi');
     deleteIcon.classList.add('mdi-delete');
+    deleteIcon.addEventListener('click', () => deleteTransaction(value, index));
 
     deleteButton.appendChild(deleteIcon);
 
@@ -55,11 +56,29 @@ const setTransactionItems = (list) => {
     listPanel.textContent = '';
 
     // Include item
-    list.forEach((item) => {
-        const itemElement = drawItem(item.name, item.value);
+    list.forEach((item, index) => {
+        const itemElement = drawItem(item.name, item.value, index);
         listPanel.appendChild(itemElement);
         requestAnimationFrame(() => {
             itemElement.classList.add('transaction-item-active');
         });
     });
+}
+
+const deleteTransaction = (value, position) => {
+    const absoluteValue = Number(Math.abs(value));
+    // Delete from expenses
+    if (value < 0) {
+        expensesTransactionList.splice(position, 1);
+        totalExpenses += absoluteValue;
+        totalBalance += absoluteValue;
+        setTransactionItems(expensesTransactionList);
+    }
+    if (value > 0) {
+        incomeTransactionList.splice(position, 1);
+        totalIncomes -= absoluteValue;
+        totalBalance -= absoluteValue;
+        setTransactionItems(incomeTransactionList);
+    }
+    loadDashboard();
 }
