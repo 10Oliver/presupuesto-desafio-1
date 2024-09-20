@@ -83,7 +83,7 @@ const loadDashboard = () => {
 
     //Value
     const percentageValue = document.createElement('span');
-    percentageValue.textContent = `${percentage ? percentage.toFixed(0) : '0'}%`;
+    percentageValue.textContent = `${percentage.toFixed(0)}%`;
 
     // Label, chip and value into container
     percentageChip.appendChild(percentageValue);

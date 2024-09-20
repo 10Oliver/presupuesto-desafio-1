@@ -41,6 +41,9 @@ const registerNewTransaction = (transactionType, amount, description) => {
 
 
 const calculatePercentage = (value) => {
+    if (totalIncomes === 0) {
+        return 0;
+    }
     return (Math.abs(value) * 100) / totalIncomes;
 }
 
