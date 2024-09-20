@@ -109,10 +109,12 @@ const changeMode = (value, isTransaction) => {
 
     /**
      * Transactions with different current mode
-     * will be not render
+     * will be not render, except when is a income
+     * 
+     * Incomes afecta percentage of expenses
      */
 
-    if (value !== isTransaction) {
+    if (value !== isTransaction && value > 0) {
         return;
     }
 
