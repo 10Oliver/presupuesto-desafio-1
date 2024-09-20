@@ -51,7 +51,6 @@ const loadButton = () => {
 
     // If use don't move transaction
     if (oldMode === mode) {
-        console.log("No se ha cambiado")
         // For incomes position
         if (mode) {
             animation.classList.add('animation-slide')
@@ -72,7 +71,6 @@ const loadButton = () => {
     buttonPanel.appendChild(incomeButton);
     buttonPanel.appendChild(expenseButton);
     if (mode) {
-        console.log("Si se cambió 1")
         requestAnimationFrame(() => {
             animation.classList.add('animation-slide-moved');
 
@@ -81,7 +79,6 @@ const loadButton = () => {
             animation.classList.toggle('inactive');
         }, 100)
     } else {
-        console.log("Si se cambió 2")
         requestAnimationFrame(() => {
             animation.classList.add('animation-slide');
             animation.classList.toggle('active');
